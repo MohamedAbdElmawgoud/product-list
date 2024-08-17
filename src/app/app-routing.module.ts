@@ -17,6 +17,16 @@ const routes: Routes = [
         (m) => m.ProductListModule
       ),
   },
+  // add default route
+  {
+    path: '',
+    redirectTo: 'auth',
+    pathMatch: 'full',
+  },
+  {
+    path: '**',
+    redirectTo: 'auth',
+  },
 ];
 
 @NgModule({
