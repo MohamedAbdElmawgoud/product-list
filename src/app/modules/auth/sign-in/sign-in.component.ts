@@ -37,7 +37,6 @@ export class SignInComponent {
         (error) => {
           // Handle server-side error
           this.errorMessages = error.error.message;
-          console.error('Login error:', error);
         }
       );
     } else {

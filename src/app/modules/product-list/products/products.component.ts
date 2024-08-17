@@ -37,7 +37,6 @@ export class ProductsComponent {
         this.totalProducts = res.total;
         this.totalPages = Math.ceil(this.totalProducts / this.limit);
         this.updatePagination();
-        console.log('Products:', res);
       },
       error: (error) => {
         console.error('Error:', error);
@@ -52,7 +51,6 @@ export class ProductsComponent {
     this.productService.getCategory().subscribe({
       next: (res: CategoryWithCount[]) => {
         this.categories = res;
-        console.log('Categories:', res);
       },
       error: (error) => {
         console.error('Error:', error);
@@ -103,7 +101,6 @@ export class ProductsComponent {
             // this.totalProducts = res.total;
             // this.totalPages = Math.ceil(this.totalProducts / this.limit);
             this.updatePagination();
-            console.log('Search Results:', res);
           },
           error: (error) => {
             console.error('Error:', error);

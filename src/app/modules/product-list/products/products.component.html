@@ -1,52 +1,79 @@
 <div class="container">
-  <div class="categories-container">
-    <h3>Products</h3>
-    <ul>
+  <div
+    class="categories-container"
+    role="region"
+    aria-labelledby="products-heading"
+  >
+    <h3 id="products-heading">Products</h3>
+    <ul role="radiogroup" aria-label="Product Categories">
       <li>
         <input
           type="radio"
+          id="category-all"
           name="category"
           value="All"
           (change)="onCategoryChange($event)"
           checked
+          aria-checked="true"
+          aria-label="All Categories"
         />
-        All ({{ totalProducts }})
+        <label for="category-all">All ({{ totalProducts }})</label>
       </li>
       <li *ngFor="let category of categories">
         <input
           type="radio"
+          id="category-{{ category.name }}"
           name="category"
           [value]="category.name"
           (change)="onCategoryChange($event)"
+          attr.aria-label="{{ category.name }} Category"
         />
-        {{ category.name }} ({{ category.count }})
+        <label for="category-{{ category.name }}"
+          >{{ category.name }} ({{ category.count }})</label
+        >
       </li>
     </ul>
   </div>
-  <div class="product-listing">
+
+  <div
+    class="product-listing"
+    role="region"
+    aria-labelledby="products-listing-heading"
+  >
     <ng-container *ngIf="products.length > 0; else noProducts">
       <app-card
         *ngFor="let product of products"
         [product]="product"
         (addToCart)="addToCart()"
+        aria-label="Product Card"
+        role="article"
       ></app-card>
     </ng-container>
     <!-- No Products Template -->
     <ng-template #noProducts>
-      <div class="no-products-message">
+      <div class="no-products-message" role="alert" aria-live="assertive">
         <p>No products available in this category.</p>
       </div>
     </ng-template>
   </div>
 </div>
 
-<div class="pagination-controls">
+<div
+  class="pagination-controls"
+  role="navigation"
+  aria-label="Pagination Controls"
+>
   <button
     (click)="prevPage()"
     [disabled]="currentPage === 1"
     class="pagination-button"
+    aria-label="Previous Page"
   >
-    <img src="assets/images/arrow.svg" alt="&lt" class="rotated-arrow" />
+    <img
+      src="assets/images/arrow.svg"
+      alt="Previous Page"
+      class="rotated-arrow"
+    />
   </button>
 
   <ng-container *ngFor="let page of pages">
@@ -55,6 +82,8 @@
       [class.active]="page === currentPage"
       *ngIf="page !== '...'"
       class="pagination-button"
+      attr.aria-label="Page {{ page }}"
+      [attr.aria-current]="page === currentPage ? 'page' : null"
     >
       {{ page }}
     </button>
@@ -66,7 +95,8 @@
     (click)="nextPage()"
     [disabled]="currentPage === totalPages"
     class="pagination-button"
+    aria-label="Next Page"
   >
-    <img src="assets/images/arrow.svg" alt="&gt" />
+    <img src="assets/images/arrow.svg" alt="Next Page" />
   </button>
 </div>
