@@ -3,6 +3,7 @@ import { ProductService } from '../../../modules/product-list/services/product.s
 import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
 import { CartResponse } from '../../models/cart.interface';
 import { StorageService } from '../../services/storage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -13,11 +14,12 @@ export class HeaderComponent {
   numberOfAddedItems: number = 0;
   searchTerm: string = '';
   searchSubjectPrivate = new Subject<string>();
-  token: string = '';
+  token!: string;
 
   constructor(
     private productService: ProductService,
-    private storage: StorageService
+    private storage: StorageService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -25,6 +27,13 @@ export class HeaderComponent {
     this.subscribeCartItems();
     this.getCartItems();
     this.initSerach();
+    this.subscribeOnRouteChange();
+  }
+
+  subscribeOnRouteChange() {
+    this.router.events.subscribe(() => {
+      this.getToken();
+    });
   }
 
   getCartItems(): void {

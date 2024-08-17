@@ -20,6 +20,7 @@ export class SignInComponent {
     private storageService: StorageService,
     private router: Router
   ) {
+    this.clearPrevToken();
     this.signInForm = this.fb.group({
       username: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(6)]],
@@ -46,5 +47,9 @@ export class SignInComponent {
       // Optionally, display a user-friendly error message
       console.log('Form is invalid');
     }
+  }
+
+  clearPrevToken() {
+    this.storageService.removeItem('token');
   }
 }
