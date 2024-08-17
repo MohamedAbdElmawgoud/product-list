@@ -1,0 +1,43 @@
+<div class="card">
+  <div class="card-header">
+    <span class="discount">{{ product.discountPercentage }}%</span>
+    <img
+      [src]="product.thumbnail"
+      alt="{{ product.title }}"
+      class="product-image"
+    />
+  </div>
+
+  <div class="card-body">
+    <h3>{{ product.title }}</h3>
+    <p class="description">{{ product.description }}</p>
+
+    <div class="pricing">
+      <span class="original-price">{{ product.price | currency }}</span>
+      <span class="discounted-price">{{
+        product.price * (1 - product.discountPercentage / 100) | currency
+      }}</span>
+    </div>
+
+    <p>
+      Brand: <strong>{{ product.brand }}</strong>
+    </p>
+    <p>
+      Category: <strong>{{ product.category }}</strong>
+    </p>
+    <p>
+      In stock: <strong>{{ product.stock }}</strong>
+    </p>
+
+    <div class="rating">
+      <span class="rating-stars">★ {{ product.rating }}</span>
+      <span>({{ product.reviews.length }})</span>
+    </div>
+  </div>
+
+  <div class="card-footer">
+    <button class="add-to-cart-button" (click)="addToCartHandler()">
+      Add to Cart
+    </button>
+  </div>
+</div>

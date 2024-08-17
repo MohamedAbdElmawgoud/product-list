@@ -1,0 +1,72 @@
+<div class="container">
+  <div class="categories-container">
+    <h3>Products</h3>
+    <ul>
+      <li>
+        <input
+          type="radio"
+          name="category"
+          value="All"
+          (change)="onCategoryChange($event)"
+          checked
+        />
+        All ({{ totalProducts }})
+      </li>
+      <li *ngFor="let category of categories">
+        <input
+          type="radio"
+          name="category"
+          [value]="category.name"
+          (change)="onCategoryChange($event)"
+        />
+        {{ category.name }} ({{ category.count }})
+      </li>
+    </ul>
+  </div>
+  <div class="product-listing">
+    <ng-container *ngIf="products.length > 0; else noProducts">
+      <app-card
+        *ngFor="let product of products"
+        [product]="product"
+        (addToCart)="addToCart()"
+      ></app-card>
+    </ng-container>
+    <!-- No Products Template -->
+    <ng-template #noProducts>
+      <div class="no-products-message">
+        <p>No products available in this category.</p>
+      </div>
+    </ng-template>
+  </div>
+</div>
+
+<div class="pagination-controls">
+  <button
+    (click)="prevPage()"
+    [disabled]="currentPage === 1"
+    class="pagination-button"
+  >
+    <img src="assets/images/arrow.svg" alt="&lt" class="rotated-arrow" />
+  </button>
+
+  <ng-container *ngFor="let page of pages">
+    <button
+      (click)="goToPage(page)"
+      [class.active]="page === currentPage"
+      *ngIf="page !== '...'"
+      class="pagination-button"
+    >
+      {{ page }}
+    </button>
+
+    <span *ngIf="page === '...'">...</span>
+  </ng-container>
+
+  <button
+    (click)="nextPage()"
+    [disabled]="currentPage === totalPages"
+    class="pagination-button"
+  >
+    <img src="assets/images/arrow.svg" alt="&gt" />
+  </button>
+</div>

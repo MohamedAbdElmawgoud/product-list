@@ -1,0 +1,91 @@
+.container {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  gap: 30px;
+  padding: 4% 0;
+}
+
+.categories-container {
+  width: 25%;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  height: max-content;
+  border: 0.5px solid #ccc; /* 424242 */
+
+  h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+
+    li {
+      margin-bottom: 10px;
+      font-size: 16px;
+
+      input[type="radio"] {
+        margin-right: 10px;
+      }
+    }
+  }
+}
+
+.product-listing {
+  width: 75%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+app-card {
+  margin: 10px;
+  box-sizing: border-box;
+}
+
+.no-products-message {
+  text-align: center;
+  margin: 20% 0;
+  font-size: 18px;
+  color: #666;
+}
+
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.pagination-button {
+  padding: 10px 15px;
+  margin: 0 5px;
+  border: 1px solid #ccc;
+  background-color: white;
+  color: black;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.pagination-button.active {
+  background-color: #41cccc;
+  color: white;
+}
+
+.pagination-button:disabled {
+  background-color: #f0f0f0;
+  color: #ccc;
+  cursor: not-allowed;
+}
+
+.pagination-button:hover:not(.active):not(:disabled) {
+  background-color: #e6e6e6;
+}
+
+.rotated-arrow {
+  transform: rotate(180deg);
+}

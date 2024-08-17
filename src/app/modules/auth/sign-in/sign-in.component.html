@@ -1,0 +1,69 @@
+<div class="sign-in-container">
+  <div class="logo">
+    <img src="assets/images/Logomark.svg" alt="Logo" />
+  </div>
+  <h2>Log in to your account</h2>
+  <p>Welcome back! Please enter your details.</p>
+
+  <form [formGroup]="signInForm" (ngSubmit)="login()" class="sign-in-form">
+    <div class="form-group">
+      <label for="username">Email</label>
+      <input
+        type="email"
+        id="username"
+        formControlName="username"
+        placeholder="Enter your email"
+      />
+      <div
+        *ngIf="
+          signInForm.get('username')?.touched &&
+          signInForm.get('username')?.invalid
+        "
+        class="error-message"
+      >
+        <span *ngIf="signInForm.get('username')?.errors?.['required']"
+          >Email is required.</span
+        >
+        <!-- <span *ngIf="signInForm.get('username')?.errors?.['email']"
+          >Invalid email format.</span
+        > -->
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input
+        type="password"
+        id="password"
+        formControlName="password"
+        placeholder="Enter your password"
+      />
+      <div
+        *ngIf="
+          signInForm.get('password')?.touched &&
+          signInForm.get('password')?.invalid
+        "
+        class="error-message"
+      >
+        <span *ngIf="signInForm.get('password')?.errors?.['required']"
+          >Password is required.</span
+        >
+        <span *ngIf="signInForm.get('password')?.errors?.['minlength']">
+          Password must be at least 6 characters.
+        </span>
+      </div>
+    </div>
+
+    <button
+      type="submit"
+      class="sign-in-button"
+      [disabled]="signInForm.invalid"
+    >
+      Sign in
+    </button>
+
+    <div class="error-message" *ngIf="errorMessages">
+      <b>{{ errorMessages }}</b>
+    </div>
+  </form>
+</div>

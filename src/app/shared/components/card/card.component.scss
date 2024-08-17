@@ -1,0 +1,110 @@
+.card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease-in-out;
+  text-align: left;
+  max-width: 282px;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+
+  .description {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #344054;
+  }
+
+  .card-header {
+    position: relative;
+
+    .discount {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background-color: #00bcd4;
+      color: #344054;
+      padding: 5px;
+      font-size: 12px;
+      border-radius: 5px;
+    }
+
+    .product-image {
+      width: 100%;
+      height: auto;
+      max-height: 257px;
+    }
+  }
+
+  .card-body {
+    padding: 0 20px;
+    min-height: 280px;
+    h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 14px;
+      color: #344054;
+      margin: 0;
+      margin-top: 8px;
+    }
+
+    .pricing {
+      margin: 20px 0;
+
+      .original-price {
+        text-decoration: line-through;
+        color: #344054;
+        margin-right: 10px;
+      }
+
+      .discounted-price {
+        font-size: 18px;
+        font-weight: bold;
+        color: #344054;
+      }
+    }
+
+    .rating {
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: right;
+
+      .rating-stars {
+        color: #f4b000;
+        font-size: 16px;
+        margin-right: 5px;
+      }
+    }
+  }
+
+  .card-footer {
+    padding: 10px;
+
+    .add-to-cart-button {
+      width: 100%;
+      min-height: 50px;
+      background-color: #00bcd4;
+      color: #344054;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      &:hover {
+        background-color: #00a3bb;
+      }
+    }
+  }
+}
